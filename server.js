@@ -29,6 +29,6 @@ io.on('connection', function (socket) {
   io.sockets.emit('transmit', { msg: 'Connected to Device' });
 });
 
-server.listen(process.env.PORT || 80, process.env.HOST || '0.0.0.0', function () {
+server.listen(process.env.PORT, process.env.HOST, function () {
   console.log("server started")
 });
