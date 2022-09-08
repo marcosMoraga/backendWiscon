@@ -9,9 +9,9 @@ const Data = require('./models/Data')
 app.use(cors())
 app.use(express.json());
 
-// app.get('/', function (req, res) {
-//   res.sendFile(__dirname + '/index.html');
-// });
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
 
 app.post('/', async function (req, res) {
   io.sockets.emit('transmit', { msg: req.query });
@@ -29,6 +29,6 @@ io.on('connection', function (socket) {
   io.sockets.emit('transmit', { msg: 'Connected to Device' });
 });
 
-server.listen(process.env.PORT || 3000, process.env.HOST || '0.0.0.0', function () {
+server.listen(process.env.PORT || 80, process.env.HOST || '0.0.0.0', function () {
   console.log("server started")
 });

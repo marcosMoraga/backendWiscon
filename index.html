@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sensor Readings</title>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <style>
+      #svg-wrapper {
+        width: 500px;
+        height: 160px;
+        margin: 2em auto;
+      }
+      svg path {
+        fill: none;
+        stroke: #000;
+        stroke-width: 1.5px;
+      }
+      svg .axis {
+        font-size: 12px;
+      }
+      svg .axis path {
+        display: none;
+      }
+
+      .heart {
+        width: 40px;
+        float: left;
+        font-size: 40px;
+        color: #e00;
+        animation: beat 0.6s infinite alternate;
+        transform-origin: center;
+      }
+
+      @keyframes beat {
+        to {
+          transform: scale(1.4);
+        }
+      }
+      #sensorValues {
+        padding-top: 15px;
+      }
+      #sensor1,
+      #sensor2,
+      #sensor3 {
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://backendplayground.herokuapp.com/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+      var socket = io.connect("https://backendplayground.herokuapp.com");
+      socket.on("transmit", function (data) {
+        //console.log(data);
+        document.getElementById("sensor1Value").innerHTML =
+          "Sensor 1 Value: " + data.msg.sensor1Val;
+        document.getElementById("sensor2Value").innerHTML =
+          "Sensor 2 Value: " + data.msg.sensor2Val;
+      });
+    </script>
+    <div class="heart" style="display: none">&#x2665;</div>
+    <div id="sensorValues">
+      <div id="sensor1Value"></div>
+      <div id="sensor2Value"></div>
+    </div>
+  </body>
+</html>
