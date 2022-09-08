@@ -20,7 +20,7 @@ app.post('/', async function (req, res) {
   //   values: req.query.sensor2Val
   // })
   // await data.save()
-  // return res.json({ success: true, response: { data }, error: null })
+  res.json({ success: true, error: null })
 
 });
 
