@@ -50,7 +50,7 @@
     <script type="text/javascript">
       var socket = io.connect("https://backendplayground.herokuapp.com");
       socket.on("transmit", function (data) {
-        //console.log(data);
+        console.log(data.msg);
         document.getElementById("sensor1Value").innerHTML =
           "Sensor 1 Value: " + data.msg.sensor1Val;
         document.getElementById("sensor2Value").innerHTML =
